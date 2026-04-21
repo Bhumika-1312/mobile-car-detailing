@@ -9,7 +9,7 @@ export default function PricingSection() {
   return (
     <Box
       sx={{
-        background: "#EDEDED",
+        background: "#fff",
         py: "60px",
         display: "flex",
         justifyContent: "center",

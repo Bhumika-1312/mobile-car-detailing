@@ -18,6 +18,8 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import PhoneIcon from "@mui/icons-material/Phone";
 import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const menuItems = [
   "Home",
@@ -31,6 +33,9 @@ const menuItems = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
+
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
   return (
     <>
@@ -54,18 +59,29 @@ export default function Navbar() {
               gap: 3,
             }}
           >
-            {menuItems.map((item) => (
-              <Button
-                key={item}
-                sx={{
-                  color: "#fff",
-                  fontSize: "12px",
-                  letterSpacing: "1px",
-                }}
-              >
-                {item}
-              </Button>
-            ))}
+            {menuItems.map((item) => {
+              const path =
+                item === "Home"
+                  ? "/"
+                  : item === "Booking"
+                  ? "/booking"
+                  : `/${item.toLowerCase().replace(" ", "")}`;
+
+              return (
+                <Button
+                  key={item}
+                  component={Link}
+                  href={path}
+                  sx={{
+                    color: isHome ? "#fff" : "#000",
+                    fontSize: "12px",
+                    letterSpacing: "1px",
+                  }}
+                >
+                  {item}
+                </Button>
+              );
+            })}
           </Box>
 
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
@@ -73,26 +89,25 @@ export default function Navbar() {
               <IconButton
                 onClick={() => setDarkMode(!darkMode)}
                 sx={{
-                  color: "#fff",
+                  color: isHome ? "#fff" : "#000",
                 }}
               >
                 {darkMode ? <DarkModeIcon /> : <LightModeIcon />}
               </IconButton>
 
               <Button
+                component={Link}
+                href="/booking"
                 variant="contained"
                 sx={{
                   width: "180px",
                   height: "44px",
                   borderRadius: "100px",
-                  fontFamily: "sans-serif",
                   fontWeight: 700,
                   fontSize: "16px",
-                  letterSpacing: "0.04em",
                   textTransform: "none",
-                  px: 2,
-                  backgroundColor: "#FFFFFF",
-                  color: darkMode ? "#006565" : "#000",
+                  backgroundColor:  "#006565",
+                  color: "#fff" ,
                 }}
               >
                 Book Now
@@ -103,8 +118,8 @@ export default function Navbar() {
                   width: "222px",
                   height: "44px",
                   borderRadius: "100px",
-                  background: "#FFFFFF33",
-                  backdropFilter: "blur(4px)",
+                  background: isHome ? "#FFFFFF33" : "#fff",
+                  border: isHome ? "none" : "1px solid #000",
                   display: "flex",
                   alignItems: "center",
                   px: "4px",
@@ -116,7 +131,7 @@ export default function Navbar() {
                     width: "40px",
                     height: "40px",
                     borderRadius: "50%",
-                    backgroundColor: darkMode ? "#000000" : "#006565",
+                    backgroundColor: "#000",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -127,10 +142,8 @@ export default function Navbar() {
 
                 <Typography
                   sx={{
-                    color: "#FFFFFF",
-                    fontFamily: "sans-serif",
-                    fontSize: "16px",
-                    letterSpacing: "0.04em",
+                    color: isHome ? "#fff" : "#000",
+                    fontSize: "14px",
                   }}
                 >
                   +91 8356257169
@@ -142,8 +155,8 @@ export default function Navbar() {
               variant="contained"
               sx={{
                 display: { xs: "inline-flex", md: "none" },
-                backgroundColor: "#fff",
-                color: "#006565",
+                backgroundColor: isHome ? "#006565" : "#fff",
+                color: isHome ? "#fff" : "#000",
                 borderRadius: "20px",
                 px: 2,
                 fontSize: "12px",
@@ -154,7 +167,10 @@ export default function Navbar() {
             </Button>
 
             <IconButton
-              sx={{ color: "#fff", display: { xs: "block", md: "none" } }}
+              sx={{
+                color: isHome ? "#fff" : "#000",
+                display: { xs: "block", md: "none" },
+              }}
               onClick={() => setOpen(true)}
             >
               <MenuIcon />

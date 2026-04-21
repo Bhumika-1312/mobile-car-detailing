@@ -8,7 +8,7 @@ export default function OurProcess() {
       sx={{
         width: "100%",
         minHeight: "750px",
-        background: "#EDEDED",
+        background: "#fff",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",

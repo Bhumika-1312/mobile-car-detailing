@@ -4,6 +4,9 @@ import CTASection from "./sections/home/CTASection";
 import OurProcess from "./sections/home/OurProcess";
 import ShowcaseSection from "./sections/home/ShowcaseSection";
 import PricingSection from "./sections/home/PricingSection";
+import ContactSection from "./sections/home/ContactSection";
+import WorkSection from "./sections/home/WorkSection";
+import Footer from "./components/layout/Footer";
 
 export default function Home() {
   return (
@@ -27,6 +30,9 @@ export default function Home() {
       />
 
       <PricingSection />
+      <ContactSection />
+      <WorkSection />
+      <Footer />
     </div>
   );
 }
