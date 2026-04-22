@@ -60,12 +60,16 @@ export default function Navbar() {
             }}
           >
             {menuItems.map((item) => {
-              const path =
-                item === "Home"
-                  ? "/"
-                  : item === "Booking"
-                  ? "/booking"
-                  : `/${item.toLowerCase().replace(" ", "")}`;
+              const routes: Record<string, string> = {
+                Home: "/",
+                Services: "/services",
+                Pricing: "/pricing",
+                Booking: "/booking",
+                Gallery: "/gallery",
+                "About Us": "/about",
+              };
+
+              const path = routes[item];
 
               return (
                 <Button
@@ -106,8 +110,8 @@ export default function Navbar() {
                   fontWeight: 700,
                   fontSize: "16px",
                   textTransform: "none",
-                  backgroundColor:  "#006565",
-                  color: "#fff" ,
+                  backgroundColor: "#006565",
+                  color: "#fff",
                 }}
               >
                 Book Now
