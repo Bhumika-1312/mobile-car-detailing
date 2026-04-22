@@ -66,7 +66,7 @@ export default function Navbar() {
                 Pricing: "/pricing",
                 Booking: "/booking",
                 Gallery: "/gallery",
-                "About Us": "/about",
+                "About Us": "/about-us",
               };
 
               const path = routes[item];
