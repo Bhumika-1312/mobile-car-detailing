@@ -2,9 +2,11 @@
 
 import { Box, Typography, TextField, Button } from "@mui/material";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function BookingCard() {
   const [selected, setSelected] = useState("doorstep");
+  const router = useRouter();
 
   return (
     <Box
@@ -172,6 +174,7 @@ export default function BookingCard() {
         }}
       >
         <Button
+        onClick={() => router.push("/booking")}
           sx={{
             px: 6,
             py: 1.5,
