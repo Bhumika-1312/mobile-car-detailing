@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense, useState } from "react";
 import {
   Box,
   Typography,
@@ -7,8 +8,8 @@ import {
   TextField,
   InputAdornment,
 } from "@mui/material";
-import MyLocationIcon from "@mui/icons-material/MyLocation";
 
+import MyLocationIcon from "@mui/icons-material/MyLocation";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -18,17 +19,16 @@ import RoomOutlinedIcon from "@mui/icons-material/RoomOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
 
-export default function Page() {
+function ScheduleContent() {
   const searchParams = useSearchParams();
+
   const [address, setAddress] = useState("");
+  const [selectedDate, setSelectedDate] = useState<number | null>(null);
+  const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
   const type = searchParams.get("type") || "location";
   const isLocation = type === "location";
-
-  const [selectedDate, setSelectedDate] = useState<number | null>(null);
-  const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
   const handleUseCurrent = () => {
     if (!navigator.geolocation) return;
@@ -39,6 +39,7 @@ export default function Page() {
       setAddress(`Current Location (${lat}, ${lng})`);
     });
   };
+
 
   const dates = [
     { day: "MON", num: 18 },
@@ -509,5 +510,13 @@ export default function Page() {
         </Box>
       </Box>
     </Box>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={null}>
+      <ScheduleContent />
+    </Suspense>
   );
 }
