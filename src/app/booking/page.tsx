@@ -3,17 +3,20 @@
 import { Box, Typography, Button } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CheckIcon from "@mui/icons-material/Check";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function BookingPage() {
   const router = useRouter();
 
+  const searchParams = useSearchParams();
+  const type = searchParams.get("type") || "location";
+
   const handleContinue = (index: number) => {
-    if (index === 2) {
-      router.push("/booking/schedule?type=onsite");
-    } else {
-      router.push("/booking/schedule?type=location");
-    }
+    const packageNames = ["exterior", "standard", "premium"];
+
+    router.push(
+      `/booking/schedule?type=${type}&package=${packageNames[index]}`,
+    );
   };
 
   return (

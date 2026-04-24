@@ -28,6 +28,25 @@ function ScheduleContent() {
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
 
   const type = searchParams.get("type") || "location";
+  const packageName = searchParams.get("package") || "standard";
+  const packageDetails = {
+    exterior: {
+      title: "Exterior Wash",
+      price: "$50.00",
+    },
+    standard: {
+      title: "Standard Interior Cleaning",
+      price: "$65.00",
+    },
+    premium: {
+      title: "Exterior Wash + Standard Interior Cleaning",
+      price: "$200.00",
+    },
+  };
+
+  const currentPackage =
+    packageDetails[packageName as keyof typeof packageDetails] ||
+    packageDetails.standard;
   const isLocation = type === "location";
 
   const handleUseCurrent = () => {
@@ -39,7 +58,6 @@ function ScheduleContent() {
       setAddress(`Current Location (${lat}, ${lng})`);
     });
   };
-
 
   const dates = [
     { day: "MON", num: 18 },
@@ -366,9 +384,7 @@ function ScheduleContent() {
                     lineHeight: 1.4,
                   }}
                 >
-                  Standard Interior
-                  <br />
-                  Cleaning
+                 {currentPackage.title}
                 </Typography>
               </Box>
             </Box>
@@ -454,7 +470,7 @@ function ScheduleContent() {
                   lineHeight: 1,
                 }}
               >
-                $65.00
+                {currentPackage.price}
               </Typography>
             </Box>
 

@@ -1,163 +1,311 @@
 "use client";
 
-import { Box, Typography, TextField, Button } from "@mui/material";
+import {
+  Box,
+  Typography,
+  TextField,
+  Button,
+  MenuItem,
+  Select,
+} from "@mui/material";
+import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
+import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
+import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
+import RadioButtonUncheckedRoundedIcon from "@mui/icons-material/RadioButtonUncheckedRounded";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function BookingCard() {
-  const [selected, setSelected] = useState("doorstep");
   const router = useRouter();
+
+  const [selected, setSelected] = useState("");
+  const [name, setName] = useState("");
+  const [code, setCode] = useState("+1");
+  const [mobile, setMobile] = useState("");
+
+  const canProceed =
+    selected !== "" && name.trim() !== "" && mobile.trim() !== "";
+
+  const handleNext = () => {
+    if (!canProceed) return;
+
+   router.push(`/booking?type=${selected === "doorstep" ? "location" : "onsite"}`);
+  };
+
+  const optionStyle = (active: boolean) => ({
+    display: "flex",
+    alignItems: "center",
+    gap: 1.4,
+    px: 1.5,
+    py: 0.7,
+    borderRadius: "999px",
+    background: active ? "#BFEFF5" : "transparent",
+    cursor: "pointer",
+    transition: "0.2s ease",
+  });
 
   return (
     <Box
       sx={{
         position: "absolute",
-        top: "20%",
+        top: { xs: "95px", sm: "110px", md: "18%" },
         left: "50%",
         transform: "translateX(-50%)",
-        width: { xs: "95%", md: "700px" },
-        background: "#F8F8F8",
-        borderRadius: "16px",
-        px: { xs: 2.5, md: 3.5 },
-        py: 6,
-        boxShadow: "0px 20px 50px rgba(0,0,0,0.3)",
+        width: {
+          xs: "94%",
+          sm: "92%",
+          md: "1000px",
+        },
+        maxWidth: "1000px",
+        background: "#F7F7F7",
+        borderRadius: "24px",
+        px: { xs: 2.5, sm: 4, md: 5 },
+        pt: { xs: 4, sm: 5, md: 6 },
+        pb: { xs: 8, md: 7 },
+        boxShadow: "0 18px 40px rgba(0,0,0,0.18)",
         zIndex: 5,
       }}
     >
-      <Box sx={{ textAlign: "center", mb: 3 }}>
-        <Box sx={{ display: "flex", justifyContent: "center", gap: 1 }}>
-          <Box
-            sx={{ width: 40, height: 4, bgcolor: "#0E7C7B", borderRadius: 2 }}
-          />
-          <Box
-            sx={{ width: 20, height: 4, bgcolor: "#D9D9D9", borderRadius: 2 }}
-          />
-          <Box
-            sx={{ width: 20, height: 4, bgcolor: "#D9D9D9", borderRadius: 2 }}
-          />
-        </Box>
-
-        <Typography sx={{ fontSize: "11px", mt: 0.5, letterSpacing: "2px" }}>
-          STEP 1 OF 3
-        </Typography>
-      </Box>
-
-      <Box sx={{ display: "flex", gap: 4, mb: 2.5 }}>
+      <Box sx={{ textAlign: "center" }}>
         <Box
-          onClick={() => setSelected("doorstep")}
           sx={{
             display: "flex",
-            alignItems: "center",
-            gap: 1,
-            cursor: "pointer",
+            justifyContent: "center",
+            gap: "14px",
           }}
         >
           <Box
             sx={{
-              width: 18,
-              height: 18,
-              borderRadius: "50%",
-              border: "2px solid #0E7C7B",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              width: "76px",
+              height: "10px",
+              borderRadius: "999px",
+              background: "#006C70",
+              boxShadow: "0 4px 10px rgba(0,108,112,.28)",
+            }}
+          />
+          <Box
+            sx={{
+              width: "50px",
+              height: "10px",
+              borderRadius: "999px",
+              background: "#DADADA",
+            }}
+          />
+          <Box
+            sx={{
+              width: "50px",
+              height: "10px",
+              borderRadius: "999px",
+              background: "#DADADA",
+            }}
+          />
+        </Box>
+
+        <Typography
+          sx={{
+            mt: 3,
+            fontSize: { xs: "16px", md: "18px" },
+            fontWeight: 700,
+            letterSpacing: "6px",
+            color: "#006C70",
+          }}
+        >
+          STEP 1 OF 3
+        </Typography>
+      </Box>
+
+      <Box
+        sx={{
+          mt: { xs: 4, md: 6 },
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "34px",
+          alignItems: "center",
+        }}
+      >
+        <Box
+          onClick={() => setSelected("doorstep")}
+          sx={optionStyle(selected === "doorstep")}
+        >
+          {selected === "doorstep" ? (
+            <Box
+              sx={{
+                width: 26,
+                height: 26,
+                borderRadius: "50%",
+                bgcolor: "#2C7CF8",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <CheckRoundedIcon sx={{ color: "#fff", fontSize: 18 }} />
+            </Box>
+          ) : (
+            <RadioButtonUncheckedRoundedIcon
+              sx={{
+                fontSize: 26,
+                color: "#222",
+              }}
+            />
+          )}
+
+          <Typography
+            sx={{
+              fontSize: { xs: "18px", md: "22px" },
+              fontWeight: 600,
+              color: "#2D2D2D",
             }}
           >
-            {selected === "doorstep" && (
-              <Box
-                sx={{
-                  width: 10,
-                  height: 10,
-                  borderRadius: "50%",
-                  bgcolor: "#0E7C7B",
-                }}
-              />
-            )}
-          </Box>
-          <Typography sx={{ fontSize: "14px", color: "#0E7C7B" }}>
             Doorstep
           </Typography>
         </Box>
 
         <Box
           onClick={() => setSelected("onsite")}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 1,
-            cursor: "pointer",
-          }}
+          sx={optionStyle(selected === "onsite")}
         >
-          <Box
+          {selected === "onsite" ? (
+            <Box
+              sx={{
+                width: 26,
+                height: 26,
+                borderRadius: "50%",
+                bgcolor: "#2C7CF8",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <CheckRoundedIcon sx={{ color: "#fff", fontSize: 18 }} />
+            </Box>
+          ) : (
+            <RadioButtonUncheckedRoundedIcon
+              sx={{
+                fontSize: 26,
+                color: "#222",
+              }}
+            />
+          )}
+
+          <Typography
             sx={{
-              width: 18,
-              height: 18,
-              borderRadius: "50%",
-              border: "2px solid #999",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              fontSize: { xs: "18px", md: "22px" },
+              fontWeight: 600,
+              color: "#2D2D2D",
             }}
           >
-            {selected === "onsite" && (
-              <Box
-                sx={{
-                  width: 10,
-                  height: 10,
-                  borderRadius: "50%",
-                  bgcolor: "#0E7C7B",
-                }}
-              />
-            )}
-          </Box>
-          <Typography sx={{ fontSize: "14px", color: "#555" }}>
             On-site
           </Typography>
         </Box>
       </Box>
 
-      <Box sx={{ display: "flex", gap: 2 }}>
-        <Box sx={{ flex: 1 }}>
-          <Typography sx={{ fontSize: "12px", mb: 0.5 }}>Full Name</Typography>
+      <Box
+        sx={{
+          mt: { xs: 4, md: 5 },
+          display: "grid",
+          gridTemplateColumns: {
+            xs: "1fr",
+            md: "1fr 1fr",
+          },
+          gap: { xs: 2.2, md: 4 },
+        }}
+      >
+        <Box>
+          <Typography
+            sx={{
+              mb: 1.2,
+              fontSize: { xs: "18px", md: "22px" },
+              fontWeight: 500,
+              color: "#2B2B2B",
+            }}
+          >
+            Full Name
+          </Typography>
+
           <TextField
             fullWidth
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             placeholder="Full Name"
-            size="small"
             sx={{
-              "& .MuiInputBase-root": {
-                height: 38,
-                fontSize: "13px",
-                background: "#fff",
+              "& .MuiOutlinedInput-root": {
+                height: { xs: 54, md: 58 },
+                borderRadius: "6px",
+                background: "#F7F7F7",
+                fontSize: "18px",
               },
               "& fieldset": {
-                borderColor: "#D0D5DD",
+                borderColor: "#BFBFBF",
               },
             }}
           />
         </Box>
 
-        <Box sx={{ flex: 1 }}>
-          <Typography sx={{ fontSize: "12px", mb: 0.5 }}>Mobile</Typography>
+        <Box>
+          <Typography
+            sx={{
+              mb: 1.2,
+              fontSize: { xs: "18px", md: "22px" },
+              fontWeight: 500,
+              color: "#2B2B2B",
+            }}
+          >
+            Mobile
+          </Typography>
 
-          <Box sx={{ display: "flex", gap: 1 }}>
-            <TextField
-              value="+1"
-              size="small"
+          <Box
+            sx={{
+              border: "1px solid #BFBFBF",
+              borderRadius: "6px",
+              overflow: "hidden",
+              display: "grid",
+              gridTemplateColumns: "110px 1fr",
+              background: "#F7F7F7",
+              height: { xs: 54, md: 58 },
+            }}
+          >
+            <Select
+              value={code}
+              onChange={(e) => setCode(e.target.value)}
+              IconComponent={KeyboardArrowDownRoundedIcon}
+              variant="standard"
+              disableUnderline
               sx={{
-                width: "80px",
-                "& .MuiInputBase-root": {
-                  height: 38,
-                  background: "#fff",
+                px: 2,
+                fontSize: "18px",
+                height: "100%",
+                "& .MuiSelect-select": {
+                  display: "flex",
+                  alignItems: "center",
+                  height: "100%",
                 },
               }}
-            />
+            >
+              <MenuItem value="+1">+1</MenuItem>
+              <MenuItem value="+91">+91</MenuItem>
+              <MenuItem value="+44">+44</MenuItem>
+            </Select>
+
             <TextField
               fullWidth
-              size="small"
+              value={mobile}
+              onChange={(e) => setMobile(e.target.value)}
+              variant="standard"
               sx={{
+                px: 2,
                 "& .MuiInputBase-root": {
-                  height: 38,
-                  background: "#fff",
+                  height: "100%",
+                  fontSize: "18px",
+                },
+                "& .MuiInput-root:before": {
+                  borderBottom: "none !important",
+                },
+                "& .MuiInput-root:after": {
+                  borderBottom: "none !important",
+                },
+                "& .MuiInput-root:hover:not(.Mui-disabled):before": {
+                  borderBottom: "none !important",
                 },
               }}
             />
@@ -168,29 +316,59 @@ export default function BookingCard() {
       <Box
         sx={{
           position: "absolute",
-          bottom: "-22px",
           left: "50%",
           transform: "translateX(-50%)",
+          bottom: "-44px",
+          width: {
+            xs: "88%",
+            sm: "460px",
+            md: "405px",
+          },
         }}
       >
         <Button
-        onClick={() => router.push("/booking")}
+          fullWidth
+          disabled={!canProceed}
+          onClick={handleNext}
+          endIcon={
+            <ArrowForwardRoundedIcon
+              sx={{
+                width: 34,
+                height: 34,
+                color: "#fff",
+              }}
+            />
+          }
           sx={{
-            px: 6,
-            py: 1.5,
-            borderRadius: "40px",
-            background: "#0E7C7B",
+            height: { xs: 60, md: 80 },
+            borderRadius: "999px",
+            background: "linear-gradient(90deg,#0B8A93 0%, #13B8CC 100%)",
             color: "#fff",
             textTransform: "none",
-            fontSize: "16px",
-            fontWeight: 600,
-            boxShadow: "0px 10px 25px rgba(14,124,123,0.5)",
+            fontSize: {
+              xs: "26px",
+              md: "30px",
+            },
+            fontWeight: 700,
+            letterSpacing: "1px",
+            boxShadow: "0 18px 28px rgba(10,150,165,.35)",
+            opacity: 1,
             "&:hover": {
-              background: "#0b6665",
+              background: "linear-gradient(90deg,#0B8A93 0%, #13B8CC 100%)",
+            },
+            "&.Mui-disabled": {
+              background: "linear-gradient(90deg,#0B8A93 0%, #13B8CC 100%)",
+              color: "#fff",
+              opacity: 1,
+              boxShadow: "0 18px 28px rgba(10,150,165,.35)",
+            },
+            "& .MuiButton-endIcon": {
+              color: "#fff",
+              ml: 1.2,
             },
           }}
         >
-          Start Booking →
+          Start Booking
         </Button>
       </Box>
     </Box>
