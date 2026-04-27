@@ -1,21 +1,22 @@
 "use client";
 
+import { Suspense } from "react";
 import { Box, Typography, Button } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CheckIcon from "@mui/icons-material/Check";
 import { useRouter, useSearchParams } from "next/navigation";
 
-export default function BookingPage() {
+function BookingContent() {
   const router = useRouter();
-
   const searchParams = useSearchParams();
+
   const type = searchParams.get("type") || "location";
 
   const handleContinue = (index: number) => {
     const packageNames = ["exterior", "standard", "premium"];
 
     router.push(
-      `/booking/schedule?type=${type}&package=${packageNames[index]}`,
+      `/booking/schedule?type=${type}&package=${packageNames[index]}`
     );
   };
 
@@ -395,5 +396,13 @@ export default function BookingPage() {
         })}
       </Box>
     </Box>
+  );
+}
+
+export default function BookingPage() {
+  return (
+    <Suspense fallback={null}>
+      <BookingContent />
+    </Suspense>
   );
 }
