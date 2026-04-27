@@ -1,6 +1,11 @@
 "use client";
 
-import { Box, Typography, TextField, IconButton } from "@mui/material";
+import {
+  Box,
+  Typography,
+  TextField,
+  IconButton,
+} from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import PublicIcon from "@mui/icons-material/Public";
@@ -16,24 +21,50 @@ export default function Footer() {
         color: "#fff",
         display: "flex",
         justifyContent: "center",
-        py: "80px",
+        py: {
+          xs: "50px",
+          sm: "60px",
+          md: "80px",
+        },
       }}
     >
       <Box
         sx={{
           width: "100%",
           maxWidth: "1440px",
-          px: { xs: 3, md: 6 },
+          px: {
+            xs: 2,
+            sm: 3,
+            md: 6,
+          },
         }}
       >
         <Box
           sx={{
             display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-start",
+            justifyContent:
+              "space-between",
+            alignItems: {
+              xs: "stretch",
+              md: "flex-start",
+            },
+            flexDirection: {
+              xs: "column",
+              md: "row",
+            },
+            gap: {
+              xs: 5,
+              md: 4,
+            },
           }}
         >
-          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 2,
+            }}
+          >
             {[
               "HOME",
               "SERVICES",
@@ -45,9 +76,15 @@ export default function Footer() {
               <Typography
                 key={i}
                 sx={{
-                  fontSize: "14px",
+                  fontSize: {
+                    xs: "13px",
+                    md: "14px",
+                  },
                   letterSpacing: "1px",
-                  opacity: item === "HOME" ? 0.6 : 1,
+                  opacity:
+                    item === "HOME"
+                      ? 0.6
+                      : 1,
                   cursor: "pointer",
                 }}
               >
@@ -61,14 +98,22 @@ export default function Footer() {
               display: "flex",
               flexDirection: "column",
               gap: 3,
-              width: "360px",
+              width: {
+                xs: "100%",
+                sm: "420px",
+                md: "360px",
+              },
+              maxWidth: "100%",
             }}
           >
             <Box
               sx={{
                 display: "flex",
-                justifyContent: "space-between",
+                justifyContent:
+                  "space-between",
                 alignItems: "center",
+                flexWrap: "wrap",
+                gap: 2,
               }}
             >
               <Typography
@@ -80,20 +125,48 @@ export default function Footer() {
                 Stay up to date
               </Typography>
 
-              <Box sx={{ display: "flex", gap: 3 }}>
-                {" "}
-                <InstagramIcon sx={{ fontSize: 18, cursor: "pointer" }} />
-                <PublicIcon sx={{ fontSize: 18, cursor: "pointer" }} />
-                <TwitterIcon sx={{ fontSize: 18, cursor: "pointer" }} />
-                <YouTubeIcon sx={{ fontSize: 18, cursor: "pointer" }} />
+              <Box
+                sx={{
+                  display: "flex",
+                  gap: {
+                    xs: 2,
+                    md: 3,
+                  },
+                }}
+              >
+                <InstagramIcon
+                  sx={{
+                    fontSize: 18,
+                    cursor: "pointer",
+                  }}
+                />
+                <PublicIcon
+                  sx={{
+                    fontSize: 18,
+                    cursor: "pointer",
+                  }}
+                />
+                <TwitterIcon
+                  sx={{
+                    fontSize: 18,
+                    cursor: "pointer",
+                  }}
+                />
+                <YouTubeIcon
+                  sx={{
+                    fontSize: 18,
+                    cursor: "pointer",
+                  }}
+                />
               </Box>
             </Box>
+
             <Box
               sx={{
                 display: "flex",
                 alignItems: "center",
-                background: "#2F2F2F", 
-                borderRadius: "14px", 
+                background: "#2F2F2F",
+                borderRadius: "14px",
                 px: 2,
                 height: "44px",
                 width: "100%",
@@ -105,18 +178,23 @@ export default function Footer() {
                 fullWidth
                 slotProps={{
                   input: {
-                    disableUnderline: true,
+                    disableUnderline:
+                      true,
                   },
                 }}
                 sx={{
-                  "& .MuiInputBase-input": {
-                    color: "#fff",
-                    fontSize: "13px",
-                  },
-                  "& input::placeholder": {
-                    color: "#9CA3AF",
-                    opacity: 1,
-                  },
+                  "& .MuiInputBase-input":
+                    {
+                      color: "#fff",
+                      fontSize:
+                        "13px",
+                    },
+                  "& input::placeholder":
+                    {
+                      color:
+                        "#9CA3AF",
+                      opacity: 1,
+                    },
                 }}
               />
 
@@ -134,10 +212,27 @@ export default function Footer() {
 
         <Typography
           sx={{
-            fontSize: "120px",
+            fontSize: {
+              xs: "54px",
+              sm: "80px",
+              md: "120px",
+              lg: "150px",
+            },
             fontWeight: 700,
-            mt: 10,
-            letterSpacing: "4px",
+            mt: {
+              xs: 6,
+              md: 10,
+            },
+            letterSpacing: {
+              xs: "2px",
+              md: "4px",
+            },
+            textAlign: {
+              xs: "center",
+              md: "left",
+            },
+            lineHeight: 1,
+            wordBreak: "break-word",
           }}
         >
           XYZ

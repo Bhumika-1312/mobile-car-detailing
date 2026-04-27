@@ -27,7 +27,6 @@ import { usePathname } from "next/navigation";
 const menuItems = [
   { label: "HOME", path: "/" },
   { label: "SERVICES", path: "/services" },
-  { label: "PRICING", path: "/pricing" },
   { label: "BOOKING", path: "/booking" },
   { label: "GALLERY", path: "/gallery" },
   { label: "ABOUT US", path: "/about-us" },

@@ -4,39 +4,87 @@ import { Box, Typography, Button } from "@mui/material";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import TwoWheelerIcon from "@mui/icons-material/TwoWheeler";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useRouter } from "next/navigation";
 
 export default function PricingSection() {
+  const router = useRouter();
+
+  const handleBooking = (index: number) => {
+    const packageNames = ["exterior", "standard", "premium"];
+
+    router.push(`/booking?type=location&package=${packageNames[index]}`);
+  };
+
   return (
     <Box
       sx={{
+        width: "100%",
         background: "#fff",
-        py: "60px",
         display: "flex",
         justifyContent: "center",
+        py: {
+          xs: "48px",
+          sm: "60px",
+          md: "80px",
+          lg: "100px",
+          xl: "120px",
+        },
       }}
     >
       <Box
         sx={{
           width: "100%",
-          maxWidth: "1280px",
-          px: { xs: 2, md: 4 },
+          maxWidth: "1440px",
+          px: {
+            xs: 2,
+            sm: 3,
+            md: 4,
+            lg: 6,
+          },
         }}
       >
         <Box
           sx={{
             display: "flex",
+            flexDirection: {
+              xs: "column",
+              lg: "row",
+            },
             justifyContent: "space-between",
-            alignItems: "flex-start",
-            flexWrap: "wrap",
-            mb: 3,
+            alignItems: {
+              xs: "stretch",
+              lg: "flex-start",
+            },
+            gap: {
+              xs: 4,
+              md: 5,
+              lg: 6,
+            },
+            mb: {
+              xs: 4,
+              sm: 5,
+              md: 6,
+            },
           }}
         >
-          <Box>
+          <Box
+            sx={{
+              maxWidth: {
+                xs: "100%",
+                lg: "430px",
+              },
+            }}
+          >
             <Typography
               sx={{
-                fontSize: "36px",
+                fontSize: {
+                  xs: "26px",
+                  sm: "30px",
+                  md: "36px",
+                },
                 color: "#BDBDBD",
                 mb: 0.5,
+                lineHeight: 1.1,
               }}
             >
               Pricing
@@ -44,25 +92,43 @@ export default function PricingSection() {
 
             <Typography
               sx={{
-                fontSize: { xs: "30px", md: "52px" },
+                fontSize: {
+                  xs: "32px",
+                  sm: "42px",
+                  md: "52px",
+                  lg: "56px",
+                  xl: "62px",
+                },
                 fontWeight: 600,
-                lineHeight: 1.2,
+                lineHeight: 1.15,
+                color: "#111",
               }}
             >
-              Let’s decide <br /> your need
+              Let’s decide <br />
+              your need
             </Typography>
           </Box>
 
           <Box
             sx={{
-              width: "700px",
-              height: "134px",
-              display: "flex",
+              width: "100%",
+              maxWidth: {
+                xs: "100%",
+                lg: "720px",
+              },
+              display: "grid",
+              gridTemplateColumns: {
+                xs: "1fr",
+                sm: "1fr 1fr",
+              },
+              gap: "8px",
               background: "#F0F4F8",
-              borderRadius: "28px",
-              p: "4px",
-              mt: { xs: 3, md: 0 },
-              minWidth: "340px",
+              borderRadius: {
+                xs: "18px",
+                sm: "22px",
+                md: "28px",
+              },
+              p: "6px",
             }}
           >
             <Box
@@ -74,17 +140,45 @@ export default function PricingSection() {
                 gap: 1,
                 background: "#1F2428",
                 color: "#fff",
-                px: 3,
-                py: 2,
-                borderRadius: "24px",
-                flex: 1,
+                px: {
+                  xs: 2.5,
+                  md: 3,
+                },
+                py: {
+                  xs: 2,
+                  md: 2.5,
+                },
+                borderRadius: {
+                  xs: "16px",
+                  md: "24px",
+                },
               }}
             >
-              <DirectionsCarIcon sx={{ fontSize: 22, color: "#81ECFF" }} />
-              <Typography sx={{ fontSize: "14px", fontWeight: 600 }}>
+              <DirectionsCarIcon
+                sx={{
+                  fontSize: {
+                    xs: 22,
+                    md: 24,
+                  },
+                  color: "#81ECFF",
+                }}
+              />
+
+              <Typography
+                sx={{
+                  fontSize: "14px",
+                  fontWeight: 600,
+                }}
+              >
                 Cars
               </Typography>
-              <Typography sx={{ fontSize: "11px", opacity: 0.7 }}>
+
+              <Typography
+                sx={{
+                  fontSize: "11px",
+                  opacity: 0.72,
+                }}
+              >
                 Hatchback, Sedan or SUV
               </Typography>
             </Box>
@@ -96,17 +190,47 @@ export default function PricingSection() {
                 justifyContent: "center",
                 alignItems: "flex-start",
                 gap: 1,
-                px: 3,
-                py: 2,
-                borderRadius: "24px",
-                flex: 1,
+                px: {
+                  xs: 2.5,
+                  md: 3,
+                },
+                py: {
+                  xs: 2,
+                  md: 2.5,
+                },
+                borderRadius: {
+                  xs: "16px",
+                  md: "24px",
+                },
               }}
             >
-              <TwoWheelerIcon sx={{ fontSize: 22, color: "#81ECFF" }} />
-              <Typography sx={{ fontSize: "14px", fontWeight: 600 }}>
+              <TwoWheelerIcon
+                sx={{
+                  fontSize: {
+                    xs: 22,
+                    md: 24,
+                  },
+                  color: "#81ECFF",
+                }}
+              />
+
+              <Typography
+                sx={{
+                  fontSize: "14px",
+                  fontWeight: 600,
+                  color: "#111",
+                }}
+              >
                 Two-Wheelers
               </Typography>
-              <Typography sx={{ fontSize: "11px", opacity: 0.6 }}>
+
+              <Typography
+                sx={{
+                  fontSize: "11px",
+                  opacity: 0.6,
+                  color: "#111",
+                }}
+              >
                 Bike or Scooter
               </Typography>
             </Box>
@@ -115,9 +239,20 @@ export default function PricingSection() {
 
         <Box
           sx={{
-            display: "flex",
-            gap: 3,
+            display: "grid",
             justifyContent: "center",
+            justifyItems: "center",
+            width: "100%",
+            gridTemplateColumns: {
+              xs: "1fr",
+              sm: "repeat(2, 269px)",
+              lg: "repeat(3, 269px)",
+            },
+            gap: {
+              xs: 2,
+              sm: 2.5,
+              md: 3,
+            },
           }}
         >
           {[1, 2, 3].map((_, i) => {
@@ -127,12 +262,26 @@ export default function PricingSection() {
               <Box
                 key={i}
                 sx={{
-                  width: "289px",
-                  height: "386px",
+                  width: {
+                    xs: "100%",
+                    sm: "269px",
+                  },
+                  maxWidth: "269px",
+                  minHeight: {
+                    xs: "310px",
+                    sm: "350px",
+                    md: "386px",
+                  },
                   background: isActive ? "#000" : "#fff",
                   color: isActive ? "#fff" : "#000",
-                  borderRadius: "16px",
-                  p: 3,
+                  borderRadius: {
+                    xs: "18px",
+                    md: "20px",
+                  },
+                  p: {
+                    xs: 2.5,
+                    md: 3,
+                  },
                   border: isActive ? "none" : "1px solid #E5E7EB",
                   display: "flex",
                   flexDirection: "column",
@@ -140,47 +289,70 @@ export default function PricingSection() {
                 }}
               >
                 <Box>
-                  <Typography sx={{ fontSize: "16px", fontWeight: 600 }}>
+                  <Typography
+                    sx={{
+                      fontSize: {
+                        xs: "20px",
+                        md: "28px",
+                      },
+                      fontWeight: 700,
+                    }}
+                  >
                     {i === 0
                       ? "$ 50 / $ 80"
                       : i === 1
-                      ? "$ 60 / $ 100"
-                      : "$ 200 / $ 250"}
-                  </Typography>
-
-                  <Typography sx={{ mt: 2, fontSize: "14px" }}>
-                    {i === 0
-                      ? "Exterior Wash"
-                      : i === 1
-                      ? "Standard Interior Cleaning"
-                      : "Exterior Water Wash + Standard Interior Cleaning"}
+                        ? "$ 60 / $ 100"
+                        : "$ 200 / $ 250"}
                   </Typography>
 
                   <Typography
                     sx={{
-                      fontSize: "11px",
-                      opacity: isActive ? 0.7 : 0.6,
-                      mt: 1,
+                      mt: 2,
+                      fontSize: {
+                        xs: "16px",
+                        md: "20px",
+                      },
+                      lineHeight: 1.45,
+                      fontWeight: 500,
                     }}
                   >
                     {i === 0
-                      ? "(Sedan/Hatchback ₹50 / SUV more than ₹80)"
+                      ? "Exterior Wash"
                       : i === 1
-                      ? "(Sedan/Hatchback ₹60 / SUV more than ₹100)"
-                      : "(Sedan/Hatchback ₹200 / SUV more than ₹250)"}
+                        ? "Standard Interior Cleaning"
+                        : "Exterior Water Wash + Standard Interior Cleaning"}
+                  </Typography>
+
+                  <Typography
+                    sx={{
+                      mt: 1.2,
+                      fontSize: {
+                        xs: "11px",
+                        md: "12px",
+                      },
+                      lineHeight: 1.55,
+                      opacity: isActive ? 0.72 : 0.65,
+                    }}
+                  >
+                    (Sedan,Hatchback or 5 seaters / SUVs or more than 5 seaters)
                   </Typography>
                 </Box>
 
-                <Box>
+                <Box sx={{ mt: 4 }}>
                   <Button
                     fullWidth
+                    onClick={() => handleBooking(i)}
                     sx={{
+                      height: {
+                        xs: "44px",
+                        md: "48px",
+                      },
+                      borderRadius: "14px",
                       background: isActive ? "#fff" : "transparent",
                       color: "#000",
-                      borderRadius: "999px",
                       textTransform: "none",
-                      fontSize: "12px",
-                      py: 0.8,
+                      fontSize: "14px",
+                      fontWeight: 600,
                       border: isActive ? "none" : "1px solid #D1D5DB",
                     }}
                   >
@@ -188,18 +360,30 @@ export default function PricingSection() {
                   </Button>
 
                   <Box
+                    onClick={() => handleBooking(i)}
                     sx={{
                       mt: 2,
                       display: "flex",
                       justifyContent: "center",
                       alignItems: "center",
-                      gap: 0.5,
+                      gap: 0.6,
+                      cursor: "pointer",
+                      color: isActive ? "#fff" : "#111",
                     }}
                   >
-                    <Typography sx={{ fontSize: "12px" }}>
+                    <Typography
+                      sx={{
+                        fontSize: "14px",
+                      }}
+                    >
                       Know more
                     </Typography>
-                    <ArrowForwardIcon sx={{ fontSize: 13 }} />
+
+                    <ArrowForwardIcon
+                      sx={{
+                        fontSize: 14,
+                      }}
+                    />
                   </Box>
                 </Box>
               </Box>
