@@ -10,23 +10,44 @@ export default function AboutHeroSection() {
         background: "#fff",
         display: "flex",
         justifyContent: "center",
-        pb: "40px",
-        pt: "70px"
+        pt: {
+          xs: "64px",
+          sm: "72px",
+          md: "78px",
+          lg: "82px",
+        },
+        pb: {
+          xs: "24px",
+          sm: "30px",
+          md: "36px",
+          lg: "40px",
+        },
+        px: {
+          xs: 2,
+          sm: 3,
+          md: 4,
+          lg: 5,
+        },
       }}
     >
       <Box
         sx={{
           width: "100%",
           maxWidth: "1441px",
-          px: { xs: 2, md: 0 },
+          mx: "auto",
         }}
       >
         <Box
           sx={{
             width: "100%",
-            height: { xs: "320px", sm: "420px", md: "934px" },
-            borderRadius: "0px",
             overflow: "hidden",
+            height: {
+              xs: "260px",
+              sm: "360px",
+              md: "520px",
+              lg: "700px",
+              xl: "934px",
+            },
           }}
         >
           <Box
@@ -37,6 +58,7 @@ export default function AboutHeroSection() {
               width: "100%",
               height: "100%",
               objectFit: "cover",
+              objectPosition: "center",
               display: "block",
             }}
           />

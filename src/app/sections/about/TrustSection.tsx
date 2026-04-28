@@ -35,30 +35,54 @@ export default function TrustSection() {
       sx={{
         width: "100%",
         background: "#fff",
-        py: "110px",
+        py: {
+          xs: "55px",
+          sm: "70px",
+          md: "90px",
+          lg: "110px",
+        },
         display: "flex",
         justifyContent: "center",
+        px: {
+          xs: 2,
+          sm: 3,
+          md: 4,
+          lg: 5,
+        },
       }}
     >
       <Box
         sx={{
           width: "100%",
           maxWidth: "1440px",
-          px: "40px",
+          mx: "auto",
         }}
       >
         <Typography
           sx={{
             textAlign: "center",
-            fontSize: "36px",
+            fontSize: {
+              xs: "28px",
+              sm: "32px",
+              md: "36px",
+            },
             fontWeight: 700,
             color: "#222",
-            mb: "70px",
-            lineHeight: 1,
+            mb: {
+              xs: "40px",
+              sm: "55px",
+              md: "70px",
+            },
+            lineHeight: 1.1,
           }}
         >
           We build{" "}
-          <Box component="span" sx={{ color: "#00AFC4" }}>
+          <Box
+            component="span"
+            sx={{
+              color: "#00AFC4",
+            }}
+          >
             trust
           </Box>
         </Typography>
@@ -66,9 +90,19 @@ export default function TrustSection() {
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: "1fr 1fr 1fr",
-            gap: "28px",
-            alignItems: "center",
+            gridTemplateColumns: {
+              xs: "1fr",
+              sm: "1fr",
+              md: "1fr 1fr",
+              lg: "1fr 1fr 1fr",
+            },
+            gap: {
+              xs: 2,
+              sm: 3,
+              md: 3,
+              lg: "28px",
+            },
+            alignItems: "stretch",
           }}
         >
           <Box>
@@ -76,9 +110,20 @@ export default function TrustSection() {
               sx={{
                 border: "1px solid #E8E8E8",
                 background: "#fff",
-                px: "26px",
-                py: "28px",
-                height: "330px",
+                px: {
+                  xs: 2.5,
+                  sm: 3,
+                  md: "26px",
+                },
+                py: {
+                  xs: 3,
+                  md: "28px",
+                },
+                minHeight: {
+                  xs: "280px",
+                  sm: "300px",
+                  lg: "330px",
+                },
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
@@ -86,7 +131,10 @@ export default function TrustSection() {
             >
               <Typography
                 sx={{
-                  fontSize: "16px",
+                  fontSize: {
+                    xs: "15px",
+                    md: "16px",
+                  },
                   lineHeight: 1.8,
                   color: "#333",
                 }}
@@ -95,10 +143,36 @@ export default function TrustSection() {
               </Typography>
 
               <Box>
-                <Box sx={{ borderTop: "1px solid #E8E8E8", mb: 3 }} />
-                <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                  <Avatar src={cards[0].image} sx={{ width: 48, height: 48 }} />
-                  <Typography sx={{ fontSize: "20px", fontWeight: 700 }}>
+                <Box
+                  sx={{
+                    borderTop:
+                      "1px solid #E8E8E8",
+                    mb: 3,
+                  }}
+                />
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 2,
+                  }}
+                >
+                  <Avatar
+                    src={cards[0].image}
+                    sx={{
+                      width: 48,
+                      height: 48,
+                    }}
+                  />
+                  <Typography
+                    sx={{
+                      fontSize: {
+                        xs: "18px",
+                        md: "20px",
+                      },
+                      fontWeight: 700,
+                    }}
+                  >
                     {cards[0].name}
                   </Typography>
                 </Box>
@@ -106,51 +180,124 @@ export default function TrustSection() {
             </Box>
           </Box>
 
-          <Box sx={{ display: "flex", flexDirection: "column", gap: "18px" }}>
-            {[cards[1], cards[2]].map((item, i) => (
-              <Box
-                key={i}
-                sx={{
-                  background: "#000",
-                  color: "#fff",
-                  px: "26px",
-                  py: "28px",
-                  height: "300px",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Typography
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: {
+                xs: 2,
+                md: "18px",
+              },
+            }}
+          >
+            {[cards[1], cards[2]].map(
+              (item, i) => (
+                <Box
+                  key={i}
                   sx={{
-                    fontSize: "16px",
-                    lineHeight: 1.8,
+                    background: "#000",
+                    color: "#fff",
+                    px: {
+                      xs: 2.5,
+                      sm: 3,
+                      md: "26px",
+                    },
+                    py: {
+                      xs: 3,
+                      md: "28px",
+                    },
+                    minHeight: {
+                      xs: "260px",
+                      sm: "280px",
+                      lg: "300px",
+                    },
+                    display: "flex",
+                    flexDirection:
+                      "column",
+                    justifyContent:
+                      "space-between",
                   }}
                 >
-                  {item.text}
-                </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: {
+                        xs: "15px",
+                        md: "16px",
+                      },
+                      lineHeight: 1.8,
+                    }}
+                  >
+                    {item.text}
+                  </Typography>
 
-                <Box>
-                  <Box sx={{ borderTop: "1px solid rgba(255,255,255,0.25)", mb: 3 }} />
-                  <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                    <Avatar src={item.image} sx={{ width: 48, height: 48 }} />
-                    <Typography sx={{ fontSize: "20px", fontWeight: 700 }}>
-                      {item.name}
-                    </Typography>
+                  <Box>
+                    <Box
+                      sx={{
+                        borderTop:
+                          "1px solid rgba(255,255,255,0.25)",
+                        mb: 3,
+                      }}
+                    />
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems:
+                          "center",
+                        gap: 2,
+                      }}
+                    >
+                      <Avatar
+                        src={item.image}
+                        sx={{
+                          width: 48,
+                          height: 48,
+                        }}
+                      />
+                      <Typography
+                        sx={{
+                          fontSize: {
+                            xs: "18px",
+                            md: "20px",
+                          },
+                          fontWeight: 700,
+                        }}
+                      >
+                        {item.name}
+                      </Typography>
+                    </Box>
                   </Box>
                 </Box>
-              </Box>
-            ))}
+              )
+            )}
           </Box>
 
-          <Box>
+          <Box
+            sx={{
+              gridColumn: {
+                xs: "auto",
+                md: "span 2",
+                lg: "auto",
+              },
+            }}
+          >
             <Box
               sx={{
                 border: "1px solid #E8E8E8",
                 background: "#fff",
-                px: "26px",
-                py: "28px",
-                height: "330px",
+                px: {
+                  xs: 2.5,
+                  sm: 3,
+                  md: "26px",
+                },
+                py: {
+                  xs: 3,
+                  md: "28px",
+                },
+                minHeight: {
+                  xs: "280px",
+                  sm: "300px",
+                  lg: "330px",
+                },
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
@@ -158,7 +305,10 @@ export default function TrustSection() {
             >
               <Typography
                 sx={{
-                  fontSize: "16px",
+                  fontSize: {
+                    xs: "15px",
+                    md: "16px",
+                  },
                   lineHeight: 1.8,
                   color: "#333",
                 }}
@@ -167,10 +317,36 @@ export default function TrustSection() {
               </Typography>
 
               <Box>
-                <Box sx={{ borderTop: "1px solid #E8E8E8", mb: 3 }} />
-                <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                  <Avatar src={cards[3].image} sx={{ width: 48, height: 48 }} />
-                  <Typography sx={{ fontSize: "20px", fontWeight: 700 }}>
+                <Box
+                  sx={{
+                    borderTop:
+                      "1px solid #E8E8E8",
+                    mb: 3,
+                  }}
+                />
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 2,
+                  }}
+                >
+                  <Avatar
+                    src={cards[3].image}
+                    sx={{
+                      width: 48,
+                      height: 48,
+                    }}
+                  />
+                  <Typography
+                    sx={{
+                      fontSize: {
+                        xs: "18px",
+                        md: "20px",
+                      },
+                      fontWeight: 700,
+                    }}
+                  >
                     {cards[3].name}
                   </Typography>
                 </Box>
